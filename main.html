@@ -1,0 +1,48 @@
+<meta charset="UTF-8">
+<html>
+<head>
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="moment.js"></script>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="main.css">
+
+<script src="htmap.js" charset="utf-8"></script>
+ 
+</head>
+<body>
+
+
+     
+    <br><br>    
+    <div id="one" class="heatmap">
+        <script src="htmap.js" charset="utf-8"></script>
+
+    </div>
+    </body>
+   
+
+<script type="text/javascript">
+
+	// var val = undefined
+	// d3.json("heat.json", function(data) {
+	// 	val = data;
+	// });
+	
+	// drawD3FaultMap(val);
+	var a = new Date('01/01/2016');
+	var b = new Date('02/12/2016');
+	var passData = [a, 200, b, 1];
+	var stateDict = "Testing";
+	var title = "Title";
+	var divName = "one";
+	var margin = {top: 20, right: 10, bottom: 20, left: 10};
+	drawD3FaultMap(passData, stateDict, title, divName, 1000, 1050, 1, margin);
+</script>
+
+
+</html>
