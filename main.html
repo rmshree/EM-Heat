@@ -1,48 +1,67 @@
-<meta charset="UTF-8">
+<!DOCTYPE html>
 <html>
-<head>
-<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="moment.js"></script>
+<title>Date/Time Heatmap for EM</title>    
+    <meta charset="utf-8"/>
+<style type="text/css">
+   body{font-family:arial, 'Hiragino Sans GB',Tahoma, Arial, Helvetica, STHeiti;font-size: 14px;}
+  .days-hours-heatmap{padding: 20px 0 20px 0;width: 500px;margin: 0 auto;}
+  .days-hours-heatmap .calibration{margin-bottom: 15px;width:400px;}
+  .days-hours-heatmap .calibration .group{display: inline-block;}
+  .days-hours-heatmap .calibration .description{width:108px;}
+  .days-hours-heatmap .calibration .description>label:last-child{float:right;}
+  .days-hours-heatmap .calibration>.display-control{float:right;}
+  .days-hours-heatmap .calibration>.display-control label{vertical-align: top;}
+  .days-hours-heatmap .calibration>.display-control input[type='radio']{cursor: pointer;}
 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="main.css">
-
-<script src="htmap.js" charset="utf-8"></script>
- 
-</head>
-<body>
-
-
-     
-    <br><br>    
-    <div id="one" class="heatmap">
-        <script src="htmap.js" charset="utf-8"></script>
-
+  .days-hours-heatmap .heatmap .axis path{display: none;}
+  .days-hours-heatmap .heatmap .axis line{fill: none;stroke: #000;shape-rendering: crispEdges;}
+  .days-hours-heatmap .heatmap .axis text{font-size: 12px}
+</style>
+  <head>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
+    <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
+  </head>
+  <body>
+    <p><ul>Dataset: 
+      <li> Type: JSON</li>
+      <li> Fields: Timestamp(YYYY-MM-DDThh:mm:ss)
+         & Value("val": 00.00)</li> </ul>
+         <ul>Sample data is PM2.5 concentration over a period of time.</ul></p><br><br>
+    <div class="days-hours-heatmap">
+      <!-- calibration and render type controller -->
+      <div class="calibration" role="calibration">
+        <div class="group" role="example">
+          <svg width="120" height="17">
+          </svg>
+          <div role="description" class="description">
+            <label>Less</label>
+            <label>More</label>
+          </div>        
+        </div>
+        <div role="toggleDisplay" class="display-control">
+          <div>
+            <input type="radio" name="displayType" checked/>
+            <label>Discrete</label>
+          </div>
+          <div>
+            <input type="radio" name="displayType"/>
+            <label>Continuous</label> 
+          </div>
+        </div>
+      </div>
+      <!-- heatmap -->
+      <svg role="heatmap" class="heatmap"></svg>
+      <div id="colors">
+        </div>
     </div>
-    </body>
-   
+    
+    <script type="text/javascript">
+       d3.json('data.json',function(err,data){
+       data = data.data;
+       renderdata(data);
+     });
+    </script>
+        <script type="text/javascript" src="app.js"></script>
 
-<script type="text/javascript">
-
-	// var val = undefined
-	// d3.json("heat.json", function(data) {
-	// 	val = data;
-	// });
-	
-	// drawD3FaultMap(val);
-	var a = new Date('01/01/2016');
-	var b = new Date('02/12/2016');
-	var passData = [a, 200, b, 1];
-	var stateDict = "Testing";
-	var title = "Title";
-	var divName = "one";
-	var margin = {top: 20, right: 10, bottom: 20, left: 10};
-	drawD3FaultMap(passData, stateDict, title, divName, 1000, 1050, 1, margin);
-</script>
-
-
+  </body>
 </html>
